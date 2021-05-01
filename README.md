@@ -1,7 +1,6 @@
 # Zach Carter's Asurint Interview Code Sample
 
-** Brief synopsis **
+**Brief synopsis**
  - Java
  - Spring Initializer
- - Spring data rest
- - 
+ - Spring data rest 
