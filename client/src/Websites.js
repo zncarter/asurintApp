@@ -18,7 +18,7 @@ function Websites(props) {
         },
         (error) => {
           setIsLoaded(true);
-          setErrorMessage(`Failed loading Websites: {error.message}`);
+          setErrorMessage(`Failed loading Websites: ${error.message}`);
           setWebsites([]);
         }
       );
@@ -67,7 +67,7 @@ function Websites(props) {
                 </thead>
                 <tbody>
               {websites.map( website =>
-                <tr key="{website.id}">
+                <tr key={website.slug}>
                   <td>{website.description}</td>
                   <td>{website.url}</td>
                   <td>{website.slug ? <Button color="secondary" tag={Link} to={'/websites/' + website.slug}>Details</Button> : null}</td>

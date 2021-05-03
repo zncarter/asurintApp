@@ -1,9 +1,10 @@
 import React from "react"
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Websites from './Websites';
 import NavBar from "./NavBar";
+import Websites from './Websites';
 import Website from "./Website";
+import WebsiteEdit from "./WebsiteEdit";
 
 function App() {
   const navbar = <NavBar/>
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path={`/websites/:slug`}>
           <Website/>
+        </Route>
+        <Route path="/new-website" exact>
+          <WebsiteEdit/>
         </Route>
       </Switch>
     </Router>

@@ -25,7 +25,7 @@ function Website( props ) {
         },
         (error) => {
           setIsLoaded(true);
-          setErrorMessage(`Failed loading Website: {error.message}`);
+          setErrorMessage(`Failed loading Website: ${error.message}`);
           setWebsite();
         }
       );
