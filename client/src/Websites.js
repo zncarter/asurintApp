@@ -33,7 +33,7 @@ function Websites(props) {
       {props.navbar}
       <div className="d-flex flex-row justify-content-between p-3">
         <h3 className="website-title">Websites</h3>
-        <Button color="primary" tag={Link} to="/new-website">Add New</Button>
+        <Button color="primary" tag={Link} to="/newwebsite">Add New</Button>
       </div>
       {(() => {
         if (!isLoaded) {

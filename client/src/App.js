@@ -18,11 +18,11 @@ function App() {
         <Route path="/websites" exact>
           <Websites navbar={navbar}/>
         </Route>
+        <Route path="/newwebsite" exact>
+          <WebsiteEdit/>
+        </Route>
         <Route path={`/websites/:slug`}>
           <Website/>
-        </Route>
-        <Route path="/new-website" exact>
-          <WebsiteEdit/>
         </Route>
       </Switch>
     </Router>

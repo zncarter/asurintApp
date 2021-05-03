@@ -7,6 +7,8 @@ import Navbar from "./NavBar";
 function WebsiteEdit( props ) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+  const [saveButtonDisplayed, setSaveButtonDisplayed] = useState(true);
+  const [cancelButtonText, setCancelButtonText] = useState("Cancel");
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
   const [notes, setNotes] = useState("");
@@ -19,6 +21,8 @@ function WebsiteEdit( props ) {
         result => {
           setErrorMessage(null);
           setSuccessMessage(`Created Website with slug: ${result.data.slug}`)
+          setSaveButtonDisplayed(false);
+          setCancelButtonText("Return to list")
         },
         (error) => {
           var errorMsg = error.message;
@@ -75,8 +79,10 @@ function WebsiteEdit( props ) {
           />
         </FormGroup>
         <FormGroup className="d-flex flex-row">
-          <Button color="primary" type="submit" className="mr-3">Save</Button>
-          <Button color="secondary" tag={Link} to="/websites">Cancel</Button>
+          {saveButtonDisplayed ?
+          <Button color="primary" type="submit" className="mr-3">Save</Button> : null
+          }
+          <Button color="secondary" tag={Link} to="/websites">{cancelButtonText}</Button>
         </FormGroup>
       </Form>
       </div>

@@ -62,11 +62,11 @@ function Website( props ) {
           )
         } else {
           return (
-            <div className="d-flex flex-row flex-container flex-wrap">
+            <div className="d-flex flex-row flex-container flex-wrap p-3">
               <Card>
                 <CardBody>
                   <CardTitle tag="h2">{website.description}</CardTitle>
-                  <CardSubtitle tag="h3"><a target="_blank" rel="noreferrer" href={website.url}>{website.url}</a></CardSubtitle>
+                  <CardSubtitle tag="h3"><a target="_blank" rel="noreferrer" href={website.url.startsWith('http') ? website.url : 'http://' + website.url}>{website.url}</a></CardSubtitle>
                   <CardText>{website.notes}</CardText>
                 </CardBody>
               </Card>
