@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from 'react-router-dom';
 import axios from "axios";
+import { Alert, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
+import Navbar from "./NavBar";
 
 function Website( props ) {
   const [errorMessage, setErrorMessage] = useState(null);
@@ -11,16 +13,15 @@ function Website( props ) {
   // path of `/websites/:slug`. The `:slug` portion
   // of the URL indicates a placeholder that we can
   // get from `useParams()`.
-
   let { slug } = useParams();
 
-  function fetchWebsite() {
-    axios.get(`/api/websites/search/findBySlug?{slug}`)
+  useEffect(() => {
+    axios.get(`/api/websites/search/findBySlug?slug=${slug}`)
       .then(
         result => {
           setIsLoaded(true);
           setErrorMessage(null);
-          setWebsite(result);
+          setWebsite(result.data);
         },
         (error) => {
           setIsLoaded(true);
@@ -28,15 +29,51 @@ function Website( props ) {
           setWebsite();
         }
       );
-  }
-
-  useEffect(() => {
-    fetchWebsite();
-  }, [])
+  }, [slug])
 
   return (
     <div>
-      <h3>{website.url}</h3>
+      <Navbar/>
+      <div className="d-flex flex-row justify-content-between p-3">
+        <h3 className="website-title">Website details</h3>
+      </div>
+      {(() => {
+        if (!isLoaded) {
+          return (
+            <div>Loading...</div>
+          )
+        } else
+        if (errorMessage) {
+          return (
+            <div className="d-flex flex-row justify-content-center">
+              <Alert color="warning" style={{flex:1, maxWidth:'80%'}}>
+                {errorMessage}
+              </Alert>
+            </div> 
+          )
+        } else
+        if (!website) {
+          return (
+            <div className="d-flex flex-row justify-content-center">
+              <Alert color="warning" style={{flex:1, maxWidth:'80%'}}>
+                Website ${slug} NOT FOUND!
+              </Alert>
+            </div>
+          )
+        } else {
+          return (
+            <div className="d-flex flex-row flex-container flex-wrap">
+              <Card>
+                <CardBody>
+                  <CardTitle tag="h2">{website.description}</CardTitle>
+                  <CardSubtitle tag="h3"><a target="_blank" rel="noreferrer" href={website.url}>{website.url}</a></CardSubtitle>
+                  <CardText>{website.notes}</CardText>
+                </CardBody>
+              </Card>
+            </div>
+          )
+        }
+      })()}
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { BrowserRouter as Router, Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
+import React from "react"
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Websites from './Websites';
 import NavBar from "./NavBar";

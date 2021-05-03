@@ -1,11 +1,15 @@
 package com.asurint.zcarter.asurintapp.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.UniqueConstraint;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="website", uniqueConstraints = @UniqueConstraint(columnNames = {"slug"}))
 public class Website {
 	
 	@Id
@@ -21,11 +25,12 @@ public class Website {
 		super();
 	}
 
-	public Website(String url, String description, String notes) {
+	public Website(String url, String description, String notes, String slug) {
 		super();
 		this.url = url;
 		this.description = description;
 		this.notes = notes;
+		this.slug = slug;
 	}
 	
 	public Long getId() {
@@ -56,6 +61,7 @@ public class Website {
 		this.notes = notes;
 	}
 	
+	@Column(unique = true)
 	public String getSlug() {
 		return slug;
 	}

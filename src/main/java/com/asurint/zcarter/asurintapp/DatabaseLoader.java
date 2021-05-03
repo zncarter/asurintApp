@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.asurint.zcarter.asurintapp.entity.Website;
 import com.asurint.zcarter.asurintapp.repository.WebsiteRepository;
+import com.asurint.zcarter.asurintapp.util.SlugUtil;
 
 @Component
 public class DatabaseLoader implements CommandLineRunner {
@@ -22,6 +23,7 @@ public class DatabaseLoader implements CommandLineRunner {
 		this.repository.save(new Website(
 				"https://www.asurint.com/",
 				"Asurint - Verify Every Hire",
-				"I hear that they're hiring!"));
+				"I hear that they're hiring!",
+				SlugUtil.createSlug("Asurint - Verify Every Hire")));
 	}
 }
