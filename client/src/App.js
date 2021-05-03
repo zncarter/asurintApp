@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import axios from "axios"
+import { BrowserRouter as Router, Redirect, Route, Switch, useRouteMatch } from 'react-router-dom';
 import './App.css';
 import Websites from './Websites';
 import NavBar from "./NavBar";
+import Website from "./Website";
 
 function App() {
   const navbar = <NavBar/>
@@ -11,11 +11,14 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/">
+        <Route path="/" exact>
           <Redirect to="/websites"/>   
         </Route>
-        <Route exact path="/websites">
+        <Route path="/websites" exact>
           <Websites navbar={navbar}/>
+        </Route>
+        <Route path={`/websites/:slug`}>
+          <Website/>
         </Route>
       </Switch>
     </Router>
