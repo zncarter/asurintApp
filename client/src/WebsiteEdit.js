@@ -9,7 +9,6 @@ function WebsiteEdit( props ) {
   const [successMessage, setSuccessMessage] = useState(null);
   const [saveButtonDisplayed, setSaveButtonDisplayed] = useState(true);
   const [cancelButtonText, setCancelButtonText] = useState("Cancel");
-  const [formValid, setFormValid] = useState(false);
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
   const [notes, setNotes] = useState("");
@@ -60,7 +59,7 @@ function WebsiteEdit( props ) {
       }
       <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <Label for="url">URL <span class="text-danger">*</span></Label>
+          <Label for="url">URL <span className="text-danger">*</span></Label>
           <Input type="text" name="url" id="url" 
             required
             value={url}
@@ -68,7 +67,7 @@ function WebsiteEdit( props ) {
           />
         </FormGroup>  
         <FormGroup>
-          <Label for="description">Description <span class="text-danger">*</span></Label>
+          <Label for="description">Description <span className="text-danger">*</span></Label>
           <Input type="text" name="description" id="description"
             required
             value={description}
@@ -84,7 +83,7 @@ function WebsiteEdit( props ) {
         </FormGroup>
         <FormGroup className="d-flex flex-row">
           {saveButtonDisplayed ?
-          <Button color="primary" type="submit" className="mr-3" disabled={!formValid}>Save</Button> : null
+          <Button color="primary" type="submit" className="mr-3">Save</Button> : null
           }
           <Button color="secondary" tag={Link} to="/websites">{cancelButtonText}</Button>
         </FormGroup>
