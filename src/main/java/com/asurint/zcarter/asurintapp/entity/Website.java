@@ -24,12 +24,16 @@ public class Website {
 	public Website() {
 		super();
 	}
-
-	public Website(String url, String description, String notes, String slug) {
+	
+	public Website(String url, String description, String notes) {
 		super();
 		this.url = url;
 		this.description = description;
 		this.notes = notes;
+	}
+
+	public Website(String url, String description, String notes, String slug) {
+		this(url, description, notes);
 		this.slug = slug;
 	}
 	
