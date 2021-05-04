@@ -9,6 +9,7 @@ function WebsiteEdit( props ) {
   const [successMessage, setSuccessMessage] = useState(null);
   const [saveButtonDisplayed, setSaveButtonDisplayed] = useState(true);
   const [cancelButtonText, setCancelButtonText] = useState("Cancel");
+  const [formValid, setFormValid] = useState(false);
   const [url, setUrl] = useState("");
   const [description, setDescription] = useState("");
   const [notes, setNotes] = useState("");
@@ -26,6 +27,7 @@ function WebsiteEdit( props ) {
         },
         (error) => {
           var errorMsg = error.message;
+          console.log(error.response);
           if (error.response.status === 409) {
             errorMsg = "A website already exists with this description";
           }
@@ -47,26 +49,28 @@ function WebsiteEdit( props ) {
       </div>
       <div className="p-3">
       {errorMessage ? 
-        <Alert color="error">
+        <Alert color="danger" className="w-100">
           {errorMessage}
         </Alert> : null
       }
       {successMessage ? 
-        <Alert color="success">
+        <Alert color="success" className="w-100">
           {successMessage}
         </Alert> : null
       }
       <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <Label for="url">URL</Label>
+          <Label for="url">URL <span class="text-danger">*</span></Label>
           <Input type="text" name="url" id="url" 
+            required
             value={url}
             onChange={e => setUrl(e.target.value)} 
           />
-        </FormGroup>
+        </FormGroup>  
         <FormGroup>
-          <Label for="description">Description</Label>
+          <Label for="description">Description <span class="text-danger">*</span></Label>
           <Input type="text" name="description" id="description"
+            required
             value={description}
             onChange={e => setDescription(e.target.value)} 
           />
@@ -80,7 +84,7 @@ function WebsiteEdit( props ) {
         </FormGroup>
         <FormGroup className="d-flex flex-row">
           {saveButtonDisplayed ?
-          <Button color="primary" type="submit" className="mr-3">Save</Button> : null
+          <Button color="primary" type="submit" className="mr-3" disabled={!formValid}>Save</Button> : null
           }
           <Button color="secondary" tag={Link} to="/websites">{cancelButtonText}</Button>
         </FormGroup>

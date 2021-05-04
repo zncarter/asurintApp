@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.UniqueConstraint;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name="website", uniqueConstraints = @UniqueConstraint(columnNames = {"slug"}))
@@ -15,9 +17,12 @@ public class Website {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+	@NotNull
     private String url;
-    private String description;
+	@NotNull
+	private String description;
     private String notes;
+    @NotNull
     private String slug;
     
     

@@ -38,13 +38,13 @@ function Websites(props) {
       {(() => {
         if (!isLoaded) {
           return (
-            <div>Loading...</div>
+            <div class="p-3">Loading...</div>
           )
         } else
         if (errorMessage) {
           return (
-            <div className="d-flex flex-row justify-content-center">
-              <Alert color="warning" style={{flex:1, maxWidth:'80%'}}>
+            <div className="d-flex flex-row p-3">
+              <Alert color="warning" className="w-100">
                 {errorMessage}
               </Alert>
             </div> 
@@ -52,7 +52,11 @@ function Websites(props) {
         } else
         if (!websites || websites.length === 0) {
           return (
-            <p>No Websites registered!</p>
+            <div className="d-flex flex-row p-3">
+              <Alert color="info" className="w-100">
+                No websites registered
+              </Alert>
+            </div> 
           )
         } else {
           return (
