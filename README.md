@@ -1,5 +1,7 @@
 # Zach Carter's Asurint Interview Code Sample
 
+To run application: `mvn spring-boot:run`
+
 **Tech Stack**
  - Java
  - Spring Boot
@@ -12,4 +14,5 @@
  - Git
  - Maven
  
- To run application: `mvn spring-boot:run`
+ Link to problem specification:
+ https://github.com/asurint/software-engineer-interview
